@@ -5,10 +5,14 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: ticketing-dev-374213
   artifacts:
-    - image: kbartolo23/auth
+    # This is the format, google use to assign a ramdom to images it builds
+    # us.gcr.io/projectId/projectDirectory
+    - image: us.gcr.io/ticketing-dev-374213/auth
       context: auth
       docker:
         dockerfile: Dockerfile
